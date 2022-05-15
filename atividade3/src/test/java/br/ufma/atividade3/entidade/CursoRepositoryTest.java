@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import br.ufma.atividade3.entidade.repositorio.CursoRepo;
 
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("test")
 @SpringBootTest
 public class CursoRepositoryTest {
 

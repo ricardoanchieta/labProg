@@ -18,7 +18,6 @@ import br.ufma.atividade3.entidade.repositorio.CursoRepo;
 import br.ufma.atividade3.entidade.repositorio.EgressoRepo;
 
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("test")
 @SpringBootTest
 public class CursoEgressoRepositoryTest {
     
@@ -49,7 +48,7 @@ public class CursoEgressoRepositoryTest {
 
     private CursoEgresso cenarioCursoEgresso(Curso c, Egresso e){
         return CursoEgresso.builder()
-                        .id(new CursoEgressoId(e.getId(), c.getId()))
+                        .id(new CursoEgressoPK(e.getId(), c.getId()))
                         .curso(c)
                         .egresso(e)
                         .dataConclusao(LocalDate.of(2022,Month.MAY, 15))

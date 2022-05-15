@@ -15,7 +15,6 @@ import br.ufma.atividade3.entidade.repositorio.ContatoRepo;
 
 
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("test")
 @SpringBootTest
 public class ContatoRepositoryTest {
 
@@ -27,7 +26,7 @@ public class ContatoRepositoryTest {
       //cenário
       Contato contato = Contato.builder()
           .nome("Zap")
-          .urlLogo("canva.com")
+          .url_logo("canva.com")
           .build();
 
       //ação
@@ -36,7 +35,7 @@ public class ContatoRepositoryTest {
       //verificação
       Assertions.assertNotNull(retorno);
       Assertions.assertEquals(contato.getNome(), retorno.getNome());
-      Assertions.assertEquals(contato.getUrlLogo(), retorno.getUrlLogo());
+      Assertions.assertEquals(contato.getUrl_logo(), retorno.getUrl_logo());
 
       //rollback
       repository.delete(retorno);
@@ -49,7 +48,7 @@ public class ContatoRepositoryTest {
       //cenário
       Contato contato = Contato.builder()
           .nome("Zap")
-          .urlLogo("canva.com")
+          .url_logo("canva.com")
           .build();
 
       //ação
@@ -62,7 +61,7 @@ public class ContatoRepositoryTest {
       Contato ret = retList.get(0);
 
       Assertions.assertEquals(contato.getNome(), ret.getNome());
-      Assertions.assertEquals(contato.getUrlLogo(), ret.getUrlLogo());
+      Assertions.assertEquals(contato.getUrl_logo(), ret.getUrl_logo());
 
       //rollback
       repository.delete(retorno);
@@ -74,7 +73,7 @@ public class ContatoRepositoryTest {
       //cenário
       Contato contato = Contato.builder()
           .nome("Zap")
-          .urlLogo("canva.com")
+          .url_logo("canva.com")
           .build();
 
       //ação

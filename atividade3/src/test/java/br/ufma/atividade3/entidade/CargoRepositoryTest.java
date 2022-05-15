@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import br.ufma.atividade3.entidade.repositorio.CargoRepo;
 
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("test")
 @SpringBootTest
 public class CargoRepositoryTest {
 
@@ -79,7 +78,7 @@ public class CargoRepositoryTest {
 
       //ação
       Cargo retorno = repository.save(cargo); 
-      boolean ret = repository.existsByNome(cargo.getNome());ß
+      boolean ret = repository.existsByNome(cargo.getNome());
       
       //verificação
       Assertions.assertTrue(ret);

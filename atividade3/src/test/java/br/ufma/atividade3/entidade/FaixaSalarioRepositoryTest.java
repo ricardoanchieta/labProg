@@ -1,4 +1,4 @@
-package br;
+package br.ufma.atividade3.entidade;
 
 
 import org.junit.jupiter.api.Assertions;
