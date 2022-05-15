@@ -17,13 +17,12 @@ import br.ufma.atividade3.entidade.repositorio.ContatoRepo;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
 @SpringBootTest
-@Transactional // o Transactional não persiste dados em teste, faz rollback após a conclusão deles
 public class ContatoRepositoryTest {
 
     @Autowired
     ContatoRepo repository;
     @Test
-    public void deveSalvarContato() throws Exception {
+    public void deveSalvarContato() {
       
       //cenário
       Contato contato = Contato.builder()
@@ -45,7 +44,7 @@ public class ContatoRepositoryTest {
 
 
     @Test
-    public void deveBuscarContato() throws Exception {
+    public void deveBuscarContato() {
       
       //cenário
       Contato contato = Contato.builder()
@@ -70,7 +69,7 @@ public class ContatoRepositoryTest {
     }
 
     @Test
-    public void deveVerificarSeExisteContato() throws Exception {
+    public void deveVerificarSeExisteContato() {
       
       //cenário
       Contato contato = Contato.builder()

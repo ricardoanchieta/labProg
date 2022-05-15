@@ -81,7 +81,6 @@ public class DepoimentoRepositoryTest {
     }
 
     @Test
-    @Transactional
     public void deveDeletarDepoimentoPorEgresso() {
       
       //cenário
