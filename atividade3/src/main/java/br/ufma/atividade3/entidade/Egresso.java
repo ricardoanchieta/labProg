@@ -1,15 +1,10 @@
 package br.ufma.atividade3.entidade;
 
 
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,6 +39,13 @@ public class Egresso {
     @Column(name="url_foto")
     private String url_foto;
 
+    @ManyToMany
+    @JoinTable(
+        name = "contato_egresso",
+        joinColumns = @JoinColumn(name="contato_id"),
+        inverseJoinColumns = @JoinColumn(name="egresso_id"))
+    Set<Contato> contatos;
+
     @OneToMany(mappedBy = "egresso")
     private Set<CursoEgresso> cursoEgresso;
 
@@ -51,5 +53,5 @@ public class Egresso {
     private List<Depoimento> depoimentos;
 
     @OneToMany(mappedBy = "egresso")
-    private List<ProfEgresso> ProfEgressos;
+    private List<ProfEgresso> profEgressos;
 }

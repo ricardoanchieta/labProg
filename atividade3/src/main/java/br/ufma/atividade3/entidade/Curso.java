@@ -7,28 +7,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "Cargo")
+@Table(name = "curso")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Cargo {
-
+public class Curso {
     @Id
-    @Column(name="id_cargo")
+    @Column(name="id_curso")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="nome")
     private String nome;
 
-    @Column(name="descricao")
-    private String descricao;
+    @Column(name="nivel")
+    private String nivel;
 
-    @OneToMany(mappedBy = "cargo")
-    private List<ProfEgresso> profEgressos;
+    @OneToMany(mappedBy = "curso")
+    private Set<CursoEgresso> cursoEgresso;
 }

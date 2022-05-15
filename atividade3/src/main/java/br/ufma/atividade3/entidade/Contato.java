@@ -1,34 +1,34 @@
 package br.ufma.atividade3.entidade;
 
-import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "Cargo")
+@Table(name="contato")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Cargo {
-
+public class Contato {
     @Id
-    @Column(name="id_cargo")
+    @Column(name="id_contato")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="nome")
     private String nome;
 
-    @Column(name="descricao")
-    private String descricao;
+    @Column(name="url_logo")
+    private String url_logo;
 
-    @OneToMany(mappedBy = "cargo")
-    private List<ProfEgresso> profEgressos;
+    @ManyToMany(mappedBy = "contatos")
+    Set<Egresso> egressos;
+
 }

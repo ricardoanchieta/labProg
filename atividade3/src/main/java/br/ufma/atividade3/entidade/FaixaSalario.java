@@ -10,25 +10,22 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
-@Table(name = "Cargo")
+@Table(name = "faixa_salario")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Cargo {
+public class FaixaSalario {
 
     @Id
-    @Column(name="id_cargo")
+    @Column(name="id_faixa_salario")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="nome")
-    private String nome;
 
     @Column(name="descricao")
     private String descricao;
 
-    @OneToMany(mappedBy = "cargo")
+    @OneToMany(mappedBy = "faixaSalario")
     private List<ProfEgresso> profEgressos;
 }
