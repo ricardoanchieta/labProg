@@ -1,7 +1,10 @@
-package br;
+package br.ufma.atividade3.entidade;
 
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Month;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,96 +20,100 @@ import br.ufma.atividade3.entidade.Egresso;
 import br.ufma.atividade3.entidade.repositorio.DepoimentoRepo;
 import br.ufma.atividade3.entidade.repositorio.EgressoRepo;
 
+import javax.swing.text.html.Option;
+
 
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("test")
 @SpringBootTest
 public class DepoimentoRepositoryTest {
 
     @Autowired
-    DepoimentoRepo repository;
+    DepoimentoRepo depoimentoRepo;
     @Autowired
-    EgressoRepo repositoryEgresso;
+    EgressoRepo egressoRepo;
 
     @Test
-    public void deveSalvarDepoimento() {
-      
-      //cenário
-      Depoimento entity = Depoimento.builder()
-      .texto("texto")
-      .data(12/05/2020)
-      .build();
+    public void deveCriarDepoimento() {
 
-      //ação
-      Depoimento retorno = repository.save(entity);
-      
-      //verificação
-      Assertions.assertNotNull(retorno);
-      Assertions.assertEquals(entity.getTexto(), retorno.getTexto());
+        //cenário
+        Egresso novo = Egresso.builder().nome("Ricardo")
+                .email("ric@oi.com")
+                .cpf("2222")
+                .resumo("Egresso de CP")
+                .url_foto("www.foto.com")
+                .build();
+        Egresso retornoEgresso = egressoRepo.save(novo);
 
-      //rollback
-      repository.delete(retorno);
+        Depoimento novoDepoimento = Depoimento.builder().texto("Algo")
+                .data(Date.valueOf(LocalDate.of(2022, Month.MAY, 15)))
+                .egresso(retornoEgresso)
+                .build();
+
+        //acao
+        Depoimento retornoDepoimento = depoimentoRepo.save(novoDepoimento);
+
+        //verificacao
+        Assertions.assertNotNull(retornoDepoimento);
+
+        //rollback
+        depoimentoRepo.delete(retornoDepoimento);
+        egressoRepo.delete(retornoEgresso);
+        }
+
+    @Test
+    public void deveRemoverDepoimento(){
+        //cenario
+        Egresso novo = Egresso.builder().nome("Ricardo")
+                                        .email("ric@oi.com")
+                                        .cpf("2222")
+                                        .resumo("Egresso de CP")
+                                        .url_foto("www.foto.com")
+                                        .build();
+        Egresso retornoEgresso = egressoRepo.save(novo);
+
+        Depoimento novoDepoimento = Depoimento.builder().texto("Algo")
+                .data(Date.valueOf(LocalDate.of(2022, Month.MAY, 15)))
+                .egresso(retornoEgresso)
+                .build();
+
+        //acao
+        Depoimento retornoDepoimento = depoimentoRepo.save(novoDepoimento);
+        Long id = retornoDepoimento.getId();
+        depoimentoRepo.deleteById(id);
+
+        //verificacao
+        Assertions.assertNotNull(retornoDepoimento);
+
+        //rollback
+        Optional<Depoimento> temp = depoimentoRepo.findById(id);
+        Assertions.assertFalse(temp.isPresent());
     }
 
     @Test
-    public void deveBuscarDepoimentoPorEgresso() {
-      
-      //cenário
-      Depoimento depoimento = Depoimento.builder()
-        .texto("texto")
-        .data(12/05/2020)
-        .build();
-;
-      Egresso egresso = Egresso.builder()
-        .nome("Nome  ")
-        .email("nome@exemplo.com")
-        .cpf("12345678910")
-        .resumo("resumo")
-        .urlFoto("http://")
-        .build();
-      egresso = repositoryEgresso.save(egresso);
-      depoimento.setEgresso(egresso);
+    public void deveBuscarDepoimento(){
+        //cenario
+        Egresso novo = Egresso.builder().nome("Ricardo")
+                .email("ric@oi.com")
+                .cpf("2222")
+                .resumo("Egresso de CP")
+                .url_foto("www.foto.com")
+                .build();
+        Egresso retornoEgresso = egressoRepo.save(novo);
 
-      //ação
-      Depoimento retorno = repository.save(depoimento);
-      
-      //verificação
-      Assertions.assertNotNull(retorno);
-      Assertions.assertEquals(depoimento.getTexto(), retorno.getTexto());
-      Assertions.assertEquals(depoimento.getData(), retorno.getData());
-      Assertions.assertEquals(depoimento.getEgresso().getId(), retorno.getEgresso().getId());
+        Depoimento novoDepoimento = Depoimento.builder().texto("Algo")
+                .data(Date.valueOf(LocalDate.of(2022, Month.MAY, 15)))
+                .egresso(retornoEgresso)
+                .build();
+        Depoimento retornoDepoimento = depoimentoRepo.save(novoDepoimento);
 
-      //rollback
-      repositoryEgresso.delete(retorno);
+        //acao
+        Optional<Depoimento> temp = depoimentoRepo.findById(retornoDepoimento.getId());
+
+        //verificacao
+        Assertions.assertTrue(temp.isPresent());
+
+        //rollback
+        depoimentoRepo.delete(retornoDepoimento);
+        egressoRepo.delete(retornoEgresso);
     }
-
-    @Test
-    @Transactional
-    public void deveDeletarDepoimentoPorEgresso() {
-      
-      //cenário
-      Depoimento depoimento = Depoimento.builder()
-        .texto("texto")
-        .data(12/05/2020)
-        .build();
-      Egresso egresso = Egresso.builder()
-        .nome("Nome  ")
-        .email("nome@exemplo.com")
-        .cpf("12345678910")
-        .resumo("resumo")
-        .urlFoto("http://")
-        .build();
-      egresso = repositoryEgresso.save(egresso);
-      depoimento.setEgresso(egresso);
-      
-      //ação
-      repository.save(depoimento);
-
-      repository.deleteByEgresso(egresso);  
-      boolean ret = repository.existsByEgresso(egresso);  
-      
-      //verificação
-      Assertions.assertFalse(ret);
     }
-
-}

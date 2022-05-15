@@ -1,4 +1,4 @@
-package br;
+package br.ufma.atividade3.entidade;
 
 
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +15,7 @@ import br.ufma.atividade3.entidade.FaixaSalario;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@SpringBootTes
+@SpringBootTest
 public class FaixaSalarioRepositoryTest {
 
     @Autowired
