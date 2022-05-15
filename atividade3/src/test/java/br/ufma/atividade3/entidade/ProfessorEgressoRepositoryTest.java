@@ -1,7 +1,6 @@
-package br.ufma.atividade3.entidade;
+package br;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -43,7 +42,7 @@ public class ProfessorEgressoRepositoryTest {
                         .email("ric@oi.com")
                         .cpf("12345678910")
                         .resumo("resumo")
-                        .url_foto("http://")
+                        .urlFoto("http://")
                         .build();
     
     Cargo cargo = Cargo.builder()
@@ -58,7 +57,7 @@ public class ProfessorEgressoRepositoryTest {
     ProfEgresso profEgresso = ProfEgresso.builder()
                               .empresa("ufma")
                               .descricao("teste")
-                              .dataRegistro(LocalDate.of(2022, Month.MAY, 15))
+                              .dataRegistro(12/05/2020)
                               .egresso(egresso)
                               .cargo(cargo)
                               .faixaSalario(faixaSalario)
@@ -78,7 +77,7 @@ public class ProfessorEgressoRepositoryTest {
 
     //verificação
     Assertions.assertNotNull(retorno);
-    Assertions.assertEquals(entity., retorno.getEmpresa());
+    Assertions.assertEquals(entity.getEmpresa(), retorno.getEmpresa());
     Assertions.assertEquals(entity.getDescricao(), retorno.getDescricao());
     Assertions.assertEquals(entity.getDataRegistro(), retorno.getDataRegistro());
   }
