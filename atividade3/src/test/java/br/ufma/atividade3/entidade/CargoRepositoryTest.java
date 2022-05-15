@@ -32,14 +32,14 @@ public class CargoRepositoryTest {
 
       //ação
       //  
-      Cargo salvo = repository.save(cargo); 
+      Cargo retorno = repository.save(cargo); 
       
       //verificação
-      Assertions.assertNotNull(salvo);
-      Assertions.assertEquals(cargo.getNome(), salvo.getNome());
-      Assertions.assertEquals(cargo.getDescricao(), salvo.getDescricao());
+      Assertions.assertNotNull(retorno);
+      Assertions.assertEquals(cargo.getNome(), retorno.getNome());
+      Assertions.assertEquals(cargo.getDescricao(), retorno.getDescricao());
 
-      // repository.delete(salvo);
+      // repository.delete(retorno);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class CargoRepositoryTest {
 
       //ação
       //  
-      Cargo salvo = repository.save(cargo); 
+      Cargo retorno = repository.save(cargo); 
       List <Cargo>  retList = repository.findByNome(cargo.getNome());
       
       //verificação
@@ -65,7 +65,7 @@ public class CargoRepositoryTest {
       Assertions.assertEquals(cargo.getDescricao(), ret.getDescricao());
 
       //rollback
-      repository.delete(salvo);
+      repository.delete(retorno);
     }
 
     @Test
@@ -78,14 +78,14 @@ public class CargoRepositoryTest {
         .build();
 
       //ação
-      Cargo salvo = repository.save(cargo); 
+      Cargo retorno = repository.save(cargo); 
       boolean ret = repository.existsByNome(cargo.getNome());ß
       
       //verificação
       Assertions.assertTrue(ret);
 
       //rollback
-      repository.delete(salvo);
+      repository.delete(retorno);
     }
 
 }

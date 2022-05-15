@@ -1,4 +1,4 @@
-package br;
+package br.ufma.atividade3.entidade;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -136,7 +136,7 @@ public class ProfessorEgressoRepositoryTest {
   }
 
   @Test
-  public void deveVerificarDeleteProfEgressoPorEgresso() throws Exception {
+  public void deveVerificarDeleteProfEgressoPorEgresso() {
     
     //cenário
     ProfEgresso profEgresso = createCenario();

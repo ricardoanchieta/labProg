@@ -15,7 +15,7 @@ public class EgressoRepositoryTest {
     EgressoRepo repo;
 
     @Test
-    public void deveVerificarSalvarEgresso(){
+    public void deveSalvarEgresso(){
         //cenario
         Egresso novo = Egresso.builder().nome("Ricardo")
                                         .email("ric@oi.com")

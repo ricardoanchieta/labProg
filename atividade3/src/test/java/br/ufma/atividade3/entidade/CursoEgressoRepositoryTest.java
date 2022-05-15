@@ -69,14 +69,14 @@ public class CursoEgressoRepositoryTest {
         CursoEgresso cursoEgresso = cenarioCursoEgresso(curso,egresso);
 
         // ação
-        CursoEgresso salvo = repository.save(cursoEgresso);
+        CursoEgresso retorno = repository.save(cursoEgresso);
         
         // verificação
-        Assertions.assertNotNull(salvo);
-        Assertions.assertEquals(cursoEgresso.getDataConclusao(), salvo.getDataConclusao());
-        Assertions.assertEquals(cursoEgresso.getDataInicio(), salvo.getDataInicio());
-        Assertions.assertEquals(cursoEgresso.getEgresso().getId(), salvo.getEgresso().getId());
-        Assertions.assertEquals(cursoEgresso.getCurso().getId(), salvo.getCurso().getId());
+        Assertions.assertNotNull(retorno);
+        Assertions.assertEquals(cursoEgresso.getDataConclusao(), retorno.getDataConclusao());
+        Assertions.assertEquals(cursoEgresso.getDataInicio(), retorno.getDataInicio());
+        Assertions.assertEquals(cursoEgresso.getEgresso().getId(), retorno.getEgresso().getId());
+        Assertions.assertEquals(cursoEgresso.getCurso().getId(), retorno.getCurso().getId());
     }
 
     @Test
@@ -88,10 +88,10 @@ public class CursoEgressoRepositoryTest {
         egresso = repositoryEgresso.save(egresso);
         
         CursoEgresso cursoEgresso = cenarioCursoEgresso(curso,egresso);
-        CursoEgresso salvo = repository.save(cursoEgresso);
+        CursoEgresso retorno = repository.save(cursoEgresso);
 
         // ação
-        List<CursoEgresso> retList = repository.findByEgresso(salvo.getEgresso());
+        List<CursoEgresso> retList = repository.findByEgresso(retorno.getEgresso());
         CursoEgresso ret = retList.get(0);
         
         // verificação
@@ -110,10 +110,10 @@ public class CursoEgressoRepositoryTest {
         egresso = repositoryEgresso.save(egresso);
         
         CursoEgresso cursoEgresso = cenarioCursoEgresso(curso,egresso);
-        CursoEgresso salvo = repository.save(cursoEgresso);
+        CursoEgresso retorno = repository.save(cursoEgresso);
 
         // ação
-        List<CursoEgresso> retList = repository.findByCurso(salvo.getCurso());
+        List<CursoEgresso> retList = repository.findByCurso(retorno.getCurso());
         CursoEgresso ret = retList.get(0);
         
         // verificação
@@ -133,10 +133,10 @@ public class CursoEgressoRepositoryTest {
         egresso = repositoryEgresso.save(egresso);
         
         CursoEgresso cursoEgresso = cenarioCursoEgresso(curso,egresso);
-        CursoEgresso salvo = repository.save(cursoEgresso);
+        CursoEgresso retorno = repository.save(cursoEgresso);
 
         // ação
-        boolean ret = repository.existsByEgresso(salvo.getEgresso());
+        boolean ret = repository.existsByEgresso(retorno.getEgresso());
         
         // verificação
         Assertions.assertTrue(ret);
@@ -151,10 +151,10 @@ public class CursoEgressoRepositoryTest {
         egresso = repositoryEgresso.save(egresso);
         
         CursoEgresso cursoEgresso = cenarioCursoEgresso(curso,egresso);
-        CursoEgresso salvo = repository.save(cursoEgresso);
+        CursoEgresso retorno = repository.save(cursoEgresso);
 
         // ação
-        boolean ret = repository.existsByCurso(salvo.getCurso());
+        boolean ret = repository.existsByCurso(retorno.getCurso());
         
         // verificação
         Assertions.assertTrue(ret);
@@ -169,11 +169,11 @@ public class CursoEgressoRepositoryTest {
         egresso = repositoryEgresso.save(egresso);
         
         CursoEgresso cursoEgresso = cenarioCursoEgresso(curso,egresso);
-        CursoEgresso salvo = repository.save(cursoEgresso);
+        CursoEgresso retorno = repository.save(cursoEgresso);
 
         // ação
-        repository.deleteByEgresso(salvo.getEgresso());
-        boolean ret = repository.existsByEgresso(salvo.getEgresso());
+        repository.deleteByEgresso(retorno.getEgresso());
+        boolean ret = repository.existsByEgresso(retorno.getEgresso());
         
         // verificação
         Assertions.assertFalse(ret);
