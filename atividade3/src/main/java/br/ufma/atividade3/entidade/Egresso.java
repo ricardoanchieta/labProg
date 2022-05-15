@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -44,12 +47,10 @@ public class Egresso {
     @Column(name="url_foto")
     private String url_foto;
 
-    @OneToMany(mappedBy = "egresso")
-    private Set<CursoEgresso> cursoEgresso;
-
-    @OneToMany(mappedBy = "egresso")
-    private List<Depoimento> depoimentos;
-
-    @OneToMany(mappedBy = "egresso")
-    private List<ProfEgresso> ProfEgressos;
+    @ManyToMany
+    @JoinTable(
+        name = "contato_egresso",
+        joinColumns = @JoinColumn(name="contato_id"),
+        inverseJoinColumns = @JoinColumn(name="egresso_id"))
+    Set<Contato> contatos;
 }
