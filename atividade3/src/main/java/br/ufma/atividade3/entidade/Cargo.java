@@ -1,19 +1,16 @@
 package br.ufma.atividade3.entidade;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
-@Table(name = "cargo")
+@Table(name = "Cargo")
 @Data
 @Builder
 @NoArgsConstructor
@@ -31,4 +28,7 @@ public class Cargo {
 
     @Column(name="descricao")
     private String descricao;
+
+    @OneToMany(mappedBy = "cargo")
+    private List<ProfEgresso> profEgressos;
 }

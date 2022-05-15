@@ -1,6 +1,7 @@
 package br.ufma.atividade3.entidade;
 
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -47,4 +48,10 @@ public class Egresso {
 
     @OneToMany(mappedBy = "egresso")
     private Set<CursoEgresso> cursoEgresso;
+
+    @OneToMany(mappedBy = "egresso")
+    private List<Depoimento> depoimentos;
+
+    @OneToMany(mappedBy = "egresso")
+    private List<ProfEgresso> profEgressos;
 }

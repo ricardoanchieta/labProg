@@ -2,17 +2,13 @@ package br.ufma.atividade3.entidade;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 @Entity
 @Table(name = "depoimento")
@@ -27,12 +23,14 @@ public class Depoimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="egresso_id")
-    private Long egresso_id;
+    @ManyToOne
+    @JoinColumn(name = "egresso_id")
+    private Egresso egresso;
 
     @Column(name="texto")
     private String texto;
 
     @Column(name="data")
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private Date data;
 }
