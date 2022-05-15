@@ -1,7 +1,4 @@
-package br;
-
-
-import java.time.LocalDate;
+package br.ufma.atividade3.entidade;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.transaction.annotation.Transactional;
 
-import br.ufma.atividade3.entidade.Depoimento;
-import br.ufma.atividade3.entidade.Egresso;
 import br.ufma.atividade3.entidade.repositorio.DepoimentoRepo;
 import br.ufma.atividade3.entidade.repositorio.EgressoRepo;
 
@@ -81,7 +75,6 @@ public class DepoimentoRepositoryTest {
     }
 
     @Test
-    @Transactional
     public void deveDeletarDepoimentoPorEgresso() {
       
       //cenário

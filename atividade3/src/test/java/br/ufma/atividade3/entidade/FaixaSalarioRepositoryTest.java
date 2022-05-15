@@ -15,24 +15,17 @@ import br.ufma.atividade3.entidade.FaixaSalario;
 
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("test")
-@SpringBootTes
+@SpringBootTest
 public class FaixaSalarioRepositoryTest {
 
     @Autowired
     FaixaSalarioRepositoryTest repository;
-
-    private FaixaSalario createCenario(){
-      FaixaSalario faixaSalario = FaixaSalario.builder().descricao("vinte mil reis").build();
-
-      return faixaSalario;
-    }
     
     @Test
-    public void deveVerificarSalvarFaixaSalario() throws Exception {
+    public void deveSalvarFaixaSalario() {
       
       //cenário
-      FaixaSalario faixaSalario = this.createCenario();
-
+      FaixaSalario faixaSalario = FaixaSalario.builder().descricao("vinte mil reis").build();
       //ação
       FaixaSalario retorno = repository.save(faixaSalario);
       
