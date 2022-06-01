@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Optional;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class EgressoRepositoryTest {
@@ -15,7 +17,7 @@ public class EgressoRepositoryTest {
     EgressoRepo repo;
 
     @Test
-    public void deveVerificarSalvarEgresso(){
+    public void deveSalvarEgresso(){
         //cenario
         Egresso novo = Egresso.builder().nome("Ricardo")
                                         .email("ric@oi.com")
@@ -39,4 +41,45 @@ public class EgressoRepositoryTest {
         //rollback
         repo.delete(retorno);
         }
+    @Test
+    public void deveRemoverEgresso(){
+        //cenario
+        Egresso novo = Egresso.builder().nome("Ricardo")
+                .email("ric@oi.com")
+                .cpf("2222")
+                .resumo("Egresso de CP")
+                .url_foto("www.foto.com")
+                .build();
+        Egresso retorno = repo.save(novo);
+
+        // acao
+        Long id = retorno.getId();
+        repo.deleteById(id);
+
+        //verificação
+        Optional<Egresso> temp = repo.findById(id);
+        Assertions.assertFalse(temp.isPresent());
+    }
+
+    @Test
+    public void deveobterEgresso(){
+        //cenario
+        Egresso novo = Egresso.builder().nome("Ricardo")
+                .email("ric@oi.com")
+                .cpf("2222")
+                .resumo("Egresso de CP")
+                .url_foto("www.foto.com")
+                .build();
+        Egresso retorno = repo.save(novo);
+
+        // acao
+        Optional<Egresso> temp = repo.findById(retorno.getId());
+
+        // verificacao
+        Assertions.assertTrue(temp.isPresent());
+
+        //Rollback
+        repo.delete(retorno);
+
+    }
 }
