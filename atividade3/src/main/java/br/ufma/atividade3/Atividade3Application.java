@@ -1,10 +1,7 @@
 package br.ufma.atividade3;
 
-import br.ufma.atividade3.entidade.repositorio.EgressoRepo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import br.ufma.atividade3.entidade.Egresso;
 
 @SpringBootApplication
 public class Atividade3Application {
