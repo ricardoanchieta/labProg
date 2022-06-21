@@ -1,0 +1,41 @@
+package br.ufma.atividade3.controller;
+
+import br.ufma.atividade3.entidade.Egresso;
+import br.ufma.atividade3.entidade.dto.EgressoDTO;
+import br.ufma.atividade3.entidade.repositorio.EgressoRepo;
+import br.ufma.atividade3.service.EgressoService;
+import br.ufma.atividade3.service.exceptions.ErroEgressoRunTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/egresso")
+
+public class EgressoController {
+
+    @Autowired
+    EgressoService service;
+
+    @PostMapping
+    public ResponseEntity salvarEgresso (@RequestBody EgressoDTO request){
+        Egresso egresso = Egresso.builder()
+                .nome(request.getNome())
+                .email(request.getEmail())
+                .cpf(request.getCpf())
+                .resumo(request.getResumo())
+                .url_foto(request.getUrl_foto())
+                .build();
+        try {
+            Egresso salvo = service.salvarEgresso(egresso);
+            return new ResponseEntity(salvo, HttpStatus.CREATED);
+        }catch (ErroEgressoRunTime ex){
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+
+    }
+}

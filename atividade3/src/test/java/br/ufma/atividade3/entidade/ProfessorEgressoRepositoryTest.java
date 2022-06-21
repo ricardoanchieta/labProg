@@ -1,6 +1,8 @@
 package br.ufma.atividade3.entidade;
 
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -42,7 +44,6 @@ public class ProfessorEgressoRepositoryTest {
                         .email("ric@oi.com")
                         .cpf("12345678910")
                         .resumo("resumo")
-                        .urlFoto("http://")
                         .build();
     
     Cargo cargo = Cargo.builder()
@@ -57,7 +58,7 @@ public class ProfessorEgressoRepositoryTest {
     ProfEgresso profEgresso = ProfEgresso.builder()
                               .empresa("ufma")
                               .descricao("teste")
-                              .dataRegistro(12/05/2020)
+                              .dataRegistro(Date.valueOf(LocalDate.of(2022, Month.MAY, 15))
                               .egresso(egresso)
                               .cargo(cargo)
                               .faixaSalario(faixaSalario)
