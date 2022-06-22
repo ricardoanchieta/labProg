@@ -5,16 +5,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class EgressoDTO {
+public class DepoimentoDTO {
     private Long id;
-    private String nome;
-    private String email;
-    private String cpf;
-    private String resumo;
-    private String url_foto;
+    private Long id_egresso;
+    private String texto;
+    private LocalDate data;
 }

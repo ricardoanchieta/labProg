@@ -1,6 +1,7 @@
 package br.ufma.atividade3.entidade;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.*;
 
@@ -32,5 +33,5 @@ public class Depoimento {
 
     @Column(name="data")
     @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
-    private Date data;
+    private LocalDate data;
 }

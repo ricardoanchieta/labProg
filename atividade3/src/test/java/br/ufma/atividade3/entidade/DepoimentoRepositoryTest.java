@@ -2,6 +2,7 @@ package br.ufma.atividade3.entidade;
 
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
@@ -36,16 +37,16 @@ public class DepoimentoRepositoryTest {
     public void deveCriarDepoimento() {
 
         //cenário
-        Egresso novo = Egresso.builder().nome("Ricardo")
-                .email("ric@oi.com")
-                .cpf("2222")
+        Egresso novo = Egresso.builder().nome("Rafifa")
+                .email("rafifa@oi.com")
+                .cpf("9090")
                 .resumo("Egresso de CP")
                 .url_foto("www.foto.com")
                 .build();
         Egresso retornoEgresso = egressoRepo.save(novo);
 
         Depoimento novoDepoimento = Depoimento.builder().texto("Algo")
-                .data(Date.valueOf(LocalDate.of(2022, Month.MAY, 15)))
+                .data(LocalDate.of(2020, 1, 8))
                 .egresso(retornoEgresso)
                 .build();
 
@@ -72,7 +73,7 @@ public class DepoimentoRepositoryTest {
         Egresso retornoEgresso = egressoRepo.save(novo);
 
         Depoimento novoDepoimento = Depoimento.builder().texto("Algo")
-                .data(Date.valueOf(LocalDate.of(2022, Month.MAY, 15)))
+                .data(LocalDate.of(2020, 1, 8))
                 .egresso(retornoEgresso)
                 .build();
 
@@ -101,7 +102,7 @@ public class DepoimentoRepositoryTest {
         Egresso retornoEgresso = egressoRepo.save(novo);
 
         Depoimento novoDepoimento = Depoimento.builder().texto("Algo")
-                .data(Date.valueOf(LocalDate.of(2022, Month.MAY, 15)))
+                .data(LocalDate.of(2020, 1, 8))
                 .egresso(retornoEgresso)
                 .build();
         Depoimento retornoDepoimento = depoimentoRepo.save(novoDepoimento);

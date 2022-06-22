@@ -1,5 +1,6 @@
 package br.ufma.atividade3.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class EgressoService {
   }
 
   private void verificarEgresso(Egresso egresso) {
-    verificarId(egresso);
+    //verificarId(egresso); comentei pois nao estava salvando Egresso pq o id sempre vem null o banco eh quem seta
     if ((egresso.getNome() == null) || (egresso.getNome().equals("")))
       throw new ErroEgressoRunTime("Nome deve ser informado");
     if ((egresso.getCpf() == null) || (egresso.getCpf().equals("")))

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/egresso")
 
@@ -21,7 +23,7 @@ public class EgressoController {
     @Autowired
     EgressoService service;
 
-    @PostMapping
+    @PostMapping("/salvar")
     public ResponseEntity salvarEgresso (@RequestBody EgressoDTO request){
         Egresso egresso = Egresso.builder()
                 .nome(request.getNome())
@@ -36,6 +38,17 @@ public class EgressoController {
         }catch (ErroEgressoRunTime ex){
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
+    }
 
+    @PostMapping("/delete")
+    public ResponseEntity deleteEgresso(@RequestBody EgressoDTO request){
+        Long id = request.getId();
+
+        try{
+            service.deletarEgresso(id);
+            return new ResponseEntity("Egresso deletado com sucesso",HttpStatus.ACCEPTED);
+        }catch (ErroEgressoRunTime ex){
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
     }
 }

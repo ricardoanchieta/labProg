@@ -1,5 +1,6 @@
 package br.ufma.atividade3.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -28,7 +29,7 @@ public class DepoimentoServiceTest {
   public void deveGerarErroAoTentarSalvarSemTexto() {
     Egresso egresso = Egresso.builder().nome("Pedro").cpf("000").build();
     Depoimento depoimento = Depoimento.builder()
-                            .data(new java.sql.Date(0)).texto("").egresso(egresso).build();
+                            .data(LocalDate.of(2020, 1, 8)).texto("").egresso(egresso).build();
     Assertions.assertThrows(ErroDepoimentoRunTime.class,
                             () -> service.salvarDepoimento(depoimento),
                             "Texto não pode ser vazio");
@@ -38,7 +39,7 @@ public class DepoimentoServiceTest {
   @Test
   public void deveGerarErroAoTentarSalvarSemEgresso() {
     Depoimento depoimento = Depoimento.builder()
-                            .data(new java.sql.Date(0)).texto("Texto").egresso(null).build();
+                            .data(LocalDate.of(2020, 1, 8)).texto("Texto").egresso(null).build();
     Assertions.assertThrows(ErroDepoimentoRunTime.class,
                             () -> service.salvarDepoimento(depoimento),
                             "Texto não pode ser vazio");
