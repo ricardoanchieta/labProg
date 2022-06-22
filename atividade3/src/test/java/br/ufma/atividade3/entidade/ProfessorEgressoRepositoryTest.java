@@ -58,7 +58,7 @@ public class ProfessorEgressoRepositoryTest {
     ProfEgresso profEgresso = ProfEgresso.builder()
                               .empresa("ufma")
                               .descricao("teste")
-                              .dataRegistro(Date.valueOf(LocalDate.of(2022, Month.MAY, 15))
+                              .dataRegistro(LocalDate.of(2020, 1, 8))
                               .egresso(egresso)
                               .cargo(cargo)
                               .faixaSalario(faixaSalario)
@@ -140,7 +140,7 @@ public class ProfessorEgressoRepositoryTest {
   public void deveVerificarDeleteProfEgressoPorEgresso() {
     
     //cenário
-    ProfEgresso profEgresso = createCenario();
+    ProfEgresso profEgresso = cenario();
 
     Egresso egresso = repositoryEgresso.save(profEgresso.getEgresso());
     profEgresso.setEgresso(egresso);
