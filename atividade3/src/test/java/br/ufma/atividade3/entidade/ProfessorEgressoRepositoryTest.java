@@ -58,7 +58,7 @@ public class ProfessorEgressoRepositoryTest {
     ProfEgresso profEgresso = ProfEgresso.builder()
                               .empresa("ufma")
                               .descricao("teste")
-                              .dataRegistro(LocalDate.of(2020, 1, 8))
+                              .dataRegistro(LocalDate.of(2022, Month.MAY, 15))
                               .egresso(egresso)
                               .cargo(cargo)
                               .faixaSalario(faixaSalario)
